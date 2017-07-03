@@ -31,6 +31,7 @@ import timber.log.Timber;
 public class DialView extends View {
 
     private static final int CENTER_OFFSET = 40;
+    private static final int CENTER_OFFSET_VERTICAL = 40;
     private static final float VELOCITY_THRESHOLD = 0.05f;
     /**
      * User is not touching the list
@@ -183,6 +184,14 @@ public class DialView extends View {
             typedArray.recycle();
         }
 
+        if (minValue >= maxValue) {
+            maxValue = minValue;
+            minValue = 0;
+        }
+
+        leastCount = (leastCount != 1) ? 1 : leastCount;
+
+
         paintInnerCircle.setStyle(Paint.Style.FILL);
         paintInnerCircle.setFilterBitmap(true);
         paintInnerCircle.setShader(new LinearGradient(0, 0, 0, getHeight(),
@@ -232,9 +241,6 @@ public class DialView extends View {
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         Timber.d("tick gap angle is %f", tickGapAngle);
-        Timber.d(getMeasuredHeight() + "rahul");
-        radius = getMeasuredWidth() / 2 - centerPadding;
-        centerX = getMeasuredWidth() / 2;
         tickCount = ((maxValue - minValue) / leastCount) + 1;
         maxAngleTheta = (((tickCount - 1) * tickGapAngle));
         minAngleTheta = 0;
@@ -243,19 +249,29 @@ public class DialView extends View {
             // for left
             case 1:
                 centerX = 0 - CENTER_OFFSET;
+                radius = getMeasuredHeight() / 2 - centerPadding;
+                centerY = getMeasuredHeight() / 2;
                 break;
 
             // for right
             case 2:
                 centerX = getMeasuredWidth() + CENTER_OFFSET;
+                radius = getMeasuredHeight() / 2 - centerPadding;
+                centerY = getMeasuredHeight() / 2;
                 break;
 
+            //for top
             case 3:
-                centerY = 0 - CENTER_OFFSET;
+                centerX = getMeasuredWidth() / 2;
+                radius = getMeasuredWidth() / 2 - centerPadding;
+                centerY = 0 - CENTER_OFFSET_VERTICAL;
                 break;
 
+            //for bottom
             case 4:
-                centerY = getMeasuredHeight() + CENTER_OFFSET;
+                centerX = getMeasuredWidth() / 2;
+                radius = getMeasuredWidth() / 2 - centerPadding;
+                centerY = getMeasuredHeight() + CENTER_OFFSET_VERTICAL;
                 break;
 
             default:
@@ -431,6 +447,16 @@ public class DialView extends View {
                 break;
             case 2:
                 xcircle = centerX + eventX;
+                ycircle = centerY - eventY;
+                break;
+
+            case 3:
+                xcircle = centerX + eventX;
+                ycircle = centerY - eventY;
+                break;
+
+            case 4:
+                xcircle = eventX - centerX;
                 ycircle = centerY - eventY;
                 break;
 

@@ -1,58 +1,124 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:custom="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/scroll_view"
-    style="@style/AppBackground"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:scrollbars="none"
+    android:layout_marginTop="@dimen/margin_large"
+    android:background="@drawable/rounded_rectangle_bg"
     tools:context="com.moldedbits.dialpickersample.MainActivity">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
+    <com.moldedbits.dialpicker.DialView
+        android:id="@+id/dial_left"
+        android:layout_width="90dp"
+        android:layout_height="200dp"
+        android:layout_centerInParent="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="@dimen/margin_normal"
+        android:padding="5dp"
+        custom:centerPadding="50"
+        custom:dialDirection="LEFT"
+        custom:endColor="@color/edit_text_bg1"
+        custom:intervalValueOnLine="true"
+        custom:leastCount="1"
+        custom:lineInterval="2"
+        custom:maxValue="24"
+        custom:minValue="0"
+        custom:startColor="@color/edit_text_bg"
+        custom:textSize="14"
+        custom:tickGapAngle="12" />
+
+    <TextView
+        android:id="@+id/tv_left"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_large"
-        android:background="@drawable/rounded_rectangle_bg"
-        android:paddingBottom="@dimen/padding_default">
+        android:layout_toEndOf="@+id/dial_left"
+        android:layout_marginStart="@dimen/margin_small"
+        android:layout_centerInParent="true"/>
 
-        <com.moldedbits.dialpicker.DialView
-            android:id="@+id/dial_minutes"
-            android:layout_width="200dp"
-            android:layout_height="150dp"
-            android:layout_marginTop="@dimen/margin_normal"
-            android:padding="5dp"
-            custom:centerPadding="50"
-            custom:dialDirection="TOP"
-            custom:endColor="@color/edit_text_bg1"
-            custom:intervalValueOnLine="true"
-            custom:leastCount="1"
-            custom:lineInterval="5"
-            custom:maxValue="60"
-            custom:minValue="5"
-            custom:startColor="@color/edit_text_bg"
-            custom:textSize="14"
-            custom:tickGapAngle="5" />
+    <com.moldedbits.dialpicker.DialView
+        android:id="@+id/dial_top"
+        android:layout_width="200dp"
+        android:layout_height="90dp"
+        android:layout_centerHorizontal="true"
+        android:padding="5dp"
+        custom:centerPadding="50"
+        custom:dialDirection="TOP"
+        custom:endColor="@color/edit_text_bg1"
+        custom:intervalValueOnLine="true"
+        custom:leastCount="1"
+        custom:lineInterval="5"
+        custom:maxValue="60"
+        custom:minValue="5"
+        custom:startColor="@color/edit_text_bg"
+        custom:textSize="14"
+        custom:tickGapAngle="5" />
 
-        <com.moldedbits.dialpicker.DialView
-            android:id="@+id/dial_hour"
-            android:layout_width="200dp"
-            android:layout_height="150dp"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginTop="@dimen/margin_normal"
-            android:padding="5dp"
-            custom:centerPadding="50"
-            custom:dialDirection="BOTTOM"
-            custom:endColor="@color/edit_text_bg1"
-            custom:intervalValueOnLine="false"
-            custom:leastCount="1"
-            custom:lineInterval="2"
-            custom:maxValue="24"
-            custom:minValue="0"
-            custom:startColor="@color/edit_text_bg"
-            custom:textSize="14"
-            custom:tickGapAngle="12" />
+    <TextView
+        android:id="@+id/tv_top"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/dial_top"
+        android:text="rahul"
+        android:rotation="90"
+        android:layout_centerInParent="true"/>
 
-    </RelativeLayout>
-</ScrollView>
+    <com.moldedbits.dialpicker.DialView
+        android:id="@+id/dial_right"
+        android:layout_width="90dp"
+        android:layout_height="200dp"
+        android:layout_centerInParent="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="@dimen/margin_normal"
+        android:padding="5dp"
+        custom:centerPadding="50"
+        custom:dialDirection="RIGHT"
+        custom:endColor="@color/edit_text_bg1"
+        custom:intervalValueOnLine="true"
+        custom:leastCount="1"
+        custom:lineInterval="5"
+        custom:maxValue="60"
+        custom:minValue="0"
+        custom:startColor="@color/edit_text_bg"
+        custom:textSize="14"
+        custom:tickGapAngle="5" />
+
+    <TextView
+        android:id="@+id/tv_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toStartOf="@+id/dial_right"
+        android:layout_marginEnd="@dimen/margin_small"
+        android:text="rahul"
+        android:layout_centerInParent="true"/>
+
+    <com.moldedbits.dialpicker.DialView
+        android:id="@+id/dial_bottom"
+        android:layout_width="200dp"
+        android:layout_height="90dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/margin_normal"
+        android:padding="5dp"
+        custom:centerPadding="50"
+        custom:dialDirection="BOTTOM"
+        custom:endColor="@color/edit_text_bg1"
+        custom:intervalValueOnLine="true"
+        custom:leastCount="1"
+        custom:lineInterval="5"
+        custom:maxValue="60"
+        custom:minValue="5"
+        custom:startColor="@color/edit_text_bg"
+        custom:textSize="14"
+        custom:tickGapAngle="5" />
+
+    <TextView
+        android:id="@+id/tv_bottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/dial_bottom"
+        android:text="rahul"
+        android:rotation="90"
+        android:layout_centerInParent="true"/>
+
+</RelativeLayout>
