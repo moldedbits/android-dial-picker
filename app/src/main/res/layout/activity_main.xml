@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scroll_view"
+    style="@style/AppBackground"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:scrollbars="none"
+    tools:context="com.moldedbits.dialpickersample.MainActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_large"
+        android:background="@drawable/rounded_rectangle_bg"
+        android:paddingBottom="@dimen/padding_default">
+
+        <com.moldedbits.dialpicker.DialView
+            android:id="@+id/dial_minutes"
+            android:layout_width="200dp"
+            android:layout_height="150dp"
+            android:layout_marginTop="@dimen/margin_normal"
+            android:padding="5dp"
+            custom:centerPadding="50"
+            custom:dialDirection="TOP"
+            custom:endColor="@color/edit_text_bg1"
+            custom:intervalValueOnLine="true"
+            custom:leastCount="1"
+            custom:lineInterval="5"
+            custom:maxValue="60"
+            custom:minValue="5"
+            custom:startColor="@color/edit_text_bg"
+            custom:textSize="14"
+            custom:tickGapAngle="5" />
+
+        <com.moldedbits.dialpicker.DialView
+            android:id="@+id/dial_hour"
+            android:layout_width="200dp"
+            android:layout_height="150dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="@dimen/margin_normal"
+            android:padding="5dp"
+            custom:centerPadding="50"
+            custom:dialDirection="BOTTOM"
+            custom:endColor="@color/edit_text_bg1"
+            custom:intervalValueOnLine="false"
+            custom:leastCount="1"
+            custom:lineInterval="2"
+            custom:maxValue="24"
+            custom:minValue="0"
+            custom:startColor="@color/edit_text_bg"
+            custom:textSize="14"
+            custom:tickGapAngle="12" />
+
+    </RelativeLayout>
+</ScrollView>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="TextViewPlus">
+        <attr name="customFont" format="string"/>
+    </declare-styleable>
+
+    <declare-styleable name="DialView">
+        <attr name="lineInterval" format="integer" />
+        <attr name="maxValue" format="integer" />
+        <attr name="minValue" format="integer" />
+        <attr name="centerPadding" format="integer" />
+        <attr name="leastCount" format="integer" />
+        <attr name="tickGapAngle" format="integer" />
+        <attr name="textSize" format="integer" />
+        <attr name="intervalValueOnLine" format="boolean" />
+
+        <attr name="dialDirection" format="enum">
+            <enum name="LEFT" value="1" />
+            <enum name="RIGHT" value="2" />
+            <enum name="TOP" value="3" />
+            <enum name="BOTTOM" value="4" />
+        </attr>
+        <attr name="startColor" format="color"/>
+        <attr name="endColor" format="color"/>
+    </declare-styleable>
+</resources>
