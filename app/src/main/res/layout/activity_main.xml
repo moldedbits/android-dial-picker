@@ -49,7 +49,7 @@
         custom:leastCount="1"
         custom:lineInterval="5"
         custom:maxValue="60"
-        custom:minValue="5"
+        custom:minValue="0"
         custom:startColor="@color/edit_text_bg"
         custom:textSize="14"
         custom:tickGapAngle="5" />
@@ -59,6 +59,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/dial_top"
+        android:layout_marginTop="@dimen/margin_small"
         android:text="rahul"
         android:rotation="90"
         android:layout_centerInParent="true"/>
@@ -107,7 +108,7 @@
         custom:leastCount="1"
         custom:lineInterval="5"
         custom:maxValue="60"
-        custom:minValue="5"
+        custom:minValue="0"
         custom:startColor="@color/edit_text_bg"
         custom:textSize="14"
         custom:tickGapAngle="5" />

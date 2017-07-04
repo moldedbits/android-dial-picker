@@ -20,6 +20,7 @@ import android.view.View;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.Calendar;
+import java.util.logging.Logger;
 
 import timber.log.Timber;
 
@@ -33,6 +34,7 @@ public class DialView extends View {
     private static final int CENTER_OFFSET = 40;
     private static final int CENTER_OFFSET_VERTICAL = 40;
     private static final float VELOCITY_THRESHOLD = 0.05f;
+    Logger logger=Logger.getLogger("DialView");
     /**
      * User is not touching the list
      */
@@ -102,18 +104,11 @@ public class DialView extends View {
     }
 
     public DialView(Context context, AttributeSet attrs) {
-        super(context, attrs);
-        init(attrs, context);
+        this(context, attrs, -1);
     }
 
     public DialView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        init(attrs, context);
-    }
-
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    public DialView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-        super(context, attrs, defStyleAttr, defStyleRes);
         init(attrs, context);
     }
 
@@ -194,8 +189,7 @@ public class DialView extends View {
 
         paintInnerCircle.setStyle(Paint.Style.FILL);
         paintInnerCircle.setFilterBitmap(true);
-        paintInnerCircle.setShader(new LinearGradient(0, 0, 0, getHeight(),
-                endColor, startColor, Shader.TileMode.CLAMP));
+        paintInnerCircle.setShader(new LinearGradient(0, 0, 0, getHeight(), endColor, startColor, Shader.TileMode.CLAMP));
 
         switch (dialDirection) {
             case 1:
@@ -214,7 +208,7 @@ public class DialView extends View {
                 currentTheta = Math.PI;
                 initTheta = Math.PI;
                 angleToCompare = 180;
-                rotateAccordingToHour();
+                rotateAccordingToMinutes();
                 break;
             case 4:
                 currentTheta = 0;
@@ -324,6 +318,7 @@ public class DialView extends View {
                 addingTextValuesToDial(canvas, newTheta, (int) i, textPointX, textPointY);
             }
 
+            logger.info(startX+" "+startY+"qwer");
             canvas.drawLine(startX, startY, endX, endY, paintLines);
 
             int newThetaInDegree = (int) (newTheta / Math.PI * 180);
@@ -424,7 +419,6 @@ public class DialView extends View {
                 duringTouch(event);
                 return true;
 
-
             case MotionEvent.ACTION_UP:
                 if (this.getParent() != null) {
                     this.getParent().requestDisallowInterceptTouchEvent(true);
@@ -439,25 +433,43 @@ public class DialView extends View {
     private void duringTouch(final MotionEvent event) {
         float eventX = event.getX();
         float eventY = event.getY();
+        logger.info(eventX+" "+" "+eventY);
 
         switch (dialDirection) {
             case 1:
                 xcircle = eventX - centerX;
                 ycircle = centerY - eventY;
+                logger.info(eventX+"event1");
+                logger.info(centerX+"case1X");
+                logger.info(centerY+"case1Y");
+                logger.info(xcircle+"case1Xq");
+                logger.info(ycircle+"case1Yq");
                 break;
             case 2:
                 xcircle = centerX + eventX;
                 ycircle = centerY - eventY;
+                logger.info(centerX+"case2X");
+                logger.info(centerY+"case2Y");
+                logger.info(xcircle+"case2Xq");
+                logger.info(ycircle+"case2Yq");
                 break;
 
             case 3:
                 xcircle = centerX + eventX;
                 ycircle = centerY - eventY;
+                logger.info(centerX+"case3X");
+                logger.info(centerY+"case3Y");
+                logger.info(xcircle+"case3Xq");
+                logger.info(ycircle+"case3Yq");
                 break;
 
             case 4:
                 xcircle = eventX - centerX;
                 ycircle = centerY - eventY;
+                logger.info(centerX+"case4X");
+                logger.info(centerY+"case4Y");
+                logger.info(xcircle+"case4Xq");
+                logger.info(ycircle+"case4Yq");
                 break;
 
             default:
@@ -465,16 +477,28 @@ public class DialView extends View {
                 break;
         }
 
-
+        logger.info(lastTouchXCircle+"rahul"+ lastTouchYCircle+" last touch");
         double originalAngle = Math.atan2(lastTouchYCircle, lastTouchXCircle);
         double newAngle = Math.atan2(ycircle, xcircle);
+        logger.info(originalAngle+"original angle");
+        logger.info(newAngle+"new angle");
 
         switch (dialDirection) {
             case 1:
                 delta = originalAngle - newAngle;
+                logger.info(delta+"delta1");
                 break;
             case 2:
                 delta = newAngle - originalAngle;
+                logger.info(delta+"delta2");
+                break;
+            case 3:
+                delta=originalAngle-newAngle;
+                logger.info(delta+"delta3");
+                break;
+            case 4:
+                delta=originalAngle-newAngle;
+                logger.info(delta+"delta4");
                 break;
 
             default:
@@ -573,7 +597,20 @@ public class DialView extends View {
                 float velocity = 0;
                 if (touchState == TOUCH_STATE_SCROLL) {
                     velocityTracker.computeCurrentVelocity(RADIANS_PER_SECOND);
-                    velocity = -1 * velocityTracker.getYVelocity();
+                    switch (dialDirection){
+                        case 1:
+                            velocity = -1 * velocityTracker.getYVelocity();
+                            break;
+                        case 2:
+                            velocity = -1 * velocityTracker.getYVelocity();
+                            break;
+                        case 3:
+                            velocity = -1 * velocityTracker.getXVelocity();
+                            break;
+                        case 4:
+                            velocity = -1 * velocityTracker.getXVelocity();
+                            break;
+                    }
                 }
                 endTouch(velocity);
                 break;
