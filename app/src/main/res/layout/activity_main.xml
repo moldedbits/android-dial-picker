@@ -106,12 +106,12 @@
         custom:endColor="@color/edit_text_bg1"
         custom:intervalValueOnLine="true"
         custom:leastCount="1"
-        custom:lineInterval="5"
-        custom:maxValue="60"
+        custom:lineInterval="2"
+        custom:maxValue="24"
         custom:minValue="0"
         custom:startColor="@color/edit_text_bg"
         custom:textSize="14"
-        custom:tickGapAngle="5" />
+        custom:tickGapAngle="12" />
 
     <TextView
         android:id="@+id/tv_bottom"
