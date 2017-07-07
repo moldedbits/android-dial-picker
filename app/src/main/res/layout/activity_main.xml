@@ -120,6 +120,7 @@
         android:layout_above="@+id/dial_bottom"
         android:text="rahul"
         android:rotation="90"
+        android:layout_marginBottom="@dimen/margin_small"
         android:layout_centerInParent="true"/>
 
 </RelativeLayout>

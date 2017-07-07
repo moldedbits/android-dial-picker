@@ -281,7 +281,6 @@ public class DialView extends View {
 
         for (double i = minValue; i < tickCount; i++) {
             double angle = i * tickGapAngle;
-            logger.info(angle + "angle");
 
             int lineHeight;
             if (i % lineInterval == 0) {
@@ -309,9 +308,6 @@ public class DialView extends View {
 
             float textPointX = (float) (((radius + lineHeight + 10) * Math.cos(newTheta)) + centerX);
             float textPointY = (float) (((radius + lineHeight + 10) * Math.sin(newTheta)) + centerY);
-
-            logger.info(startX + "startx");
-            logger.info(startY + "starty");
 
             if (lineHeight == 30) {
                 addingTextValuesToDial(canvas, newTheta, (int) i, textPointX, textPointY);
@@ -394,22 +390,25 @@ public class DialView extends View {
             }
         } else if (angleToCompare == 270) {
             // for bottom
-            paintText.setTextAlign(Paint.Align.LEFT);
-            if (angleInteger >= angleToCompare) {
-                canvas.drawText(String.valueOf(value), startX, startY + bounds.height() * 2 / 3, paintText);
+            if (angleInteger >= angleToCompare && angleInteger < 360) {
+                canvas.drawText(String.valueOf(value), startX + 8 * 2 / 4, startY + 11 / 5, paintText);
+//                logger.info("upper " + angleInteger + "value = " + value + " start X= " + startX + " startY = " + startY + "bound.width = " + bounds.width() + "bounds.height = " + bounds.height());
             } else {
-                canvas.drawText(String.valueOf(value), startX, startY + bounds.height() / 2, paintText);
+                canvas.drawText(String.valueOf(value), startX + 8 * 4 / 4, startY, paintText);
+//                logger.info("lower "+ angleInteger + "value = " + value + " start X= " + startX + " startY = " + startY + "bound.width = " + bounds.width() + "bounds.height = " + bounds.height());
             }
         } else if (angleToCompare == 90) {
-            // for bottom
-            paintText.setTextAlign(Paint.Align.LEFT);
-            if (angleInteger <= angleToCompare) {
-                canvas.drawText(String.valueOf(value), startX, startY + bounds.height() * 2 / 3, paintText);
+            //for top
+            if (angleInteger >= angleToCompare && angleInteger < 360) {
+                canvas.drawText(String.valueOf(value), startX + 8 * 2 / 3, startY + 11 * 2 / 3, paintText);
+//                logger.info("upper " + angleInteger + "value = " + value + " start X= " + startX + " startY = " + startY + "bound.width = " + bounds.width() + "bounds.height = " + bounds.height());
             } else {
-                canvas.drawText(String.valueOf(value), startX, startY + bounds.height() / 2, paintText);
+                canvas.drawText(String.valueOf(value), (float) (startX + 8 * 0.9), startY + 11 * 2 / 3, paintText);
+//                logger.info("lower "+ angleInteger + "value = " + value + " start X= " + startX + " startY = " + startY + "bound.width = " + bounds.width() + "bounds.height = " + bounds.height());
             }
         }
     }
+}
 
     private float lastTouchXCircle;
     private float lastTouchYCircle;
@@ -447,14 +446,11 @@ public class DialView extends View {
     private void duringTouch(final MotionEvent event) {
         float eventX = event.getX();
         float eventY = event.getY();
-        logger.info(eventX + " " + " " + eventY);
 
         switch (dialDirection) {
             case 1:
                 xcircle = eventX - centerX;
                 ycircle = centerY - eventY;
-                logger.info(centerX + "center1x");
-                logger.info(centerY + "center1y");
                 break;
             case 2:
                 xcircle = centerX + eventX;
@@ -547,7 +543,7 @@ public class DialView extends View {
         if (angleToCompare == 180 || angleToCompare == 270 || angleToCompare == 90) {
             if ((currentTheta <= minAngleTheta + (angleToCompare * Math.PI / 180)
                     && currentTheta >= (angleToCompare * Math.PI / 180)
-                    - (maxAngleTheta - tickGapAngle))) {
+                    - (maxAngleTheta))) {
                 invalidate();
                 initTheta += delta;
                 lastTouchXCircle = xcircle;
@@ -557,7 +553,7 @@ public class DialView extends View {
             }
 
         } else if (angleToCompare == 0) {
-            if (currentTheta > minAngleTheta && currentTheta < (maxAngleTheta - tickGapAngle)) {
+            if (currentTheta > minAngleTheta && currentTheta < (maxAngleTheta)) {
                 invalidate();
                 initTheta += delta;
                 lastTouchXCircle = xcircle;
@@ -630,8 +626,8 @@ public class DialView extends View {
         touchState = TOUCH_STATE_RESTING;
     }
 
-    public interface OnValueChangeListener {
-        void onValueChanged(String value, int maxValue);
-    }
+public interface OnValueChangeListener {
+    void onValueChanged(String value, int maxValue);
+}
 }
 
