@@ -80,6 +80,9 @@ public class DialView extends View {
     private double delta;
     private int startColor;
     private int endColor;
+    private int paintTextColor;
+    private int paintLineColor;
+    private int paintArcColor;
 
     /**
      * Knob deceleration
@@ -153,13 +156,10 @@ public class DialView extends View {
         paintText = new Paint();
 
         paintArc.setStyle(Paint.Style.STROKE);
-        paintLines.setColor(ContextCompat.getColor(getContext(), R.color.smoke_black));
-
-        paintArc.setColor(ContextCompat.getColor(getContext(), R.color.smoke_black));
         paintArc.setPathEffect(new DashPathEffect(new float[]{5, 10}, 0));
-        paintText.setColor(ContextCompat.getColor(getContext(), R.color.smoke_black));
         paintLines.setAntiAlias(true);
         paintText.setTextAlign(Paint.Align.RIGHT);
+
 
         if (attrs != null) {
             TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.DialView);
@@ -174,6 +174,9 @@ public class DialView extends View {
                     / (double) 180) * PI;
             startColor = typedArray.getColor(R.styleable.DialView_startColor, 0);
             endColor = typedArray.getColor(R.styleable.DialView_endColor, 0);
+            paintLineColor=typedArray.getColor(R.styleable.DialView_paintLineColor,0);
+            paintTextColor=typedArray.getColor(R.styleable.DialView_paintTextColor,0);
+            paintArcColor=typedArray.getColor(R.styleable.DialView_paintArcColor,0);
             typedArray.recycle();
         }
 
@@ -188,6 +191,9 @@ public class DialView extends View {
         paintInnerCircle.setStyle(Paint.Style.FILL);
         paintInnerCircle.setFilterBitmap(true);
         paintInnerCircle.setShader(new LinearGradient(0, 0, 0, getHeight(), endColor, startColor, Shader.TileMode.CLAMP));
+        paintLines.setColor(paintLineColor);
+        paintText.setColor(paintTextColor);
+        paintArc.setColor(paintArcColor);
 
         switch (dialDirection) {
             //for left
@@ -560,7 +566,20 @@ public class DialView extends View {
     private void rotate(double delta) {
         currentTheta += delta;
 
-        if (angleToCompare == 180 || angleToCompare == 270 || angleToCompare == 90) {
+        if (angleToCompare == 0) {
+            if (currentTheta > minAngleTheta && currentTheta < (maxAngleTheta)) {
+                invalidate();
+                initTheta += delta;
+                lastTouchXCircle = xcircle;
+                lastTouchYCircle = ycircle;
+            } else {
+                if (currentTheta < minAngleTheta) {
+                    currentTheta = minAngleTheta;
+                } else if (currentTheta > maxAngleTheta) {
+                    currentTheta = maxAngleTheta;
+                }
+            }
+        } else if (angleToCompare == 180 || angleToCompare == 270 || angleToCompare == 90) {
             if ((currentTheta <= minAngleTheta + (angleToCompare * PI / 180)
                     && currentTheta >= (angleToCompare * PI / 180)
                     - (maxAngleTheta))) {
@@ -585,19 +604,6 @@ public class DialView extends View {
                         currentTheta = 3 * PI / 2;
                     else if (currentTheta < (angleToCompare * PI / 180) - maxAngleTheta)
                         currentTheta = (angleToCompare * PI / 180) - maxAngleTheta;
-                }
-            }
-        } else if (angleToCompare == 0) {
-            if (currentTheta > minAngleTheta && currentTheta < (maxAngleTheta)) {
-                invalidate();
-                initTheta += delta;
-                lastTouchXCircle = xcircle;
-                lastTouchYCircle = ycircle;
-            } else {
-                if (currentTheta < minAngleTheta) {
-                    currentTheta = minAngleTheta;
-                } else if (currentTheta > maxAngleTheta) {
-                    currentTheta = maxAngleTheta;
                 }
             }
         }

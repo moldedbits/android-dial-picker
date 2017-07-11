@@ -23,5 +23,8 @@
         </attr>
         <attr name="startColor" format="color"/>
         <attr name="endColor" format="color"/>
+        <attr name="paintLineColor" format="color"/>
+        <attr name="paintTextColor" format="color"/>
+        <attr name="paintArcColor" format="color"/>
     </declare-styleable>
 </resources>

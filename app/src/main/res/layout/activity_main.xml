@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginTop="@dimen/margin_large"
+
     android:background="@drawable/rounded_rectangle_bg"
     tools:context="com.moldedbits.dialpickersample.MainActivity">
 
@@ -18,14 +18,17 @@
         android:padding="5dp"
         custom:centerPadding="50"
         custom:dialDirection="LEFT"
-        custom:endColor="@color/edit_text_bg1"
+        custom:endColor="#FF8A80"
         custom:intervalValueOnLine="true"
-        custom:leastCount="1"
+        custom:leastCount="2"
         custom:lineInterval="2"
         custom:maxValue="24"
         custom:minValue="0"
-        custom:startColor="@color/edit_text_bg"
+        custom:startColor="#FF8A80"
         custom:textSize="14"
+        custom:paintLineColor="@color/smoke_red"
+        custom:paintTextColor="@color/smoke_red"
+        custom:paintArcColor="@color/smoke_red"
         custom:tickGapAngle="12" />
 
     <TextView
@@ -45,14 +48,17 @@
         android:padding="5dp"
         custom:centerPadding="50"
         custom:dialDirection="TOP"
-        custom:endColor="@color/edit_text_bg1"
+        custom:endColor="#B39DDB"
         custom:intervalValueOnLine="true"
         custom:leastCount="1"
         custom:lineInterval="5"
         custom:maxValue="60"
         custom:minValue="0"
-        custom:startColor="@color/edit_text_bg"
+        custom:startColor="#B39DDB"
         custom:textSize="14"
+        custom:paintLineColor="@color/smoke_purple"
+        custom:paintTextColor="@color/smoke_purple"
+        custom:paintArcColor="@color/smoke_purple"
         custom:tickGapAngle="5" />
 
     <TextView
@@ -75,14 +81,17 @@
         android:padding="5dp"
         custom:centerPadding="50"
         custom:dialDirection="RIGHT"
-        custom:endColor="@color/edit_text_bg1"
+        custom:endColor="#FF80AB"
         custom:intervalValueOnLine="true"
         custom:leastCount="1"
         custom:lineInterval="2"
         custom:maxValue="24"
         custom:minValue="0"
-        custom:startColor="@color/edit_text_bg"
+        custom:startColor="#FF80AB"
         custom:textSize="14"
+        custom:paintLineColor="@color/smoke_pink"
+        custom:paintTextColor="@color/smoke_pink"
+        custom:paintArcColor="@color/smoke_pink"
         custom:tickGapAngle="12"  />
 
     <TextView
@@ -104,14 +113,17 @@
         android:padding="5dp"
         custom:centerPadding="50"
         custom:dialDirection="BOTTOM"
-        custom:endColor="@color/edit_text_bg1"
+        custom:endColor="#4CAF50"
         custom:intervalValueOnLine="true"
         custom:leastCount="1"
         custom:lineInterval="2"
         custom:maxValue="24"
         custom:minValue="0"
-        custom:startColor="@color/edit_text_bg"
+        custom:startColor="#4CAF50"
         custom:textSize="14"
+        custom:paintLineColor="@color/smoke_green"
+        custom:paintTextColor="@color/smoke_green"
+        custom:paintArcColor="@color/smoke_green"
         custom:tickGapAngle="12" />
 
     <TextView

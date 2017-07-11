@@ -8,4 +8,8 @@
     <color name="edit_text_bg1">#26680f7e</color>
     <color name="smoke_white">#f5f5f5</color>
     <color name="smoke_black">#000000</color>
+    <color name="smoke_red">#D50000</color>
+    <color name="smoke_purple">#6200EA</color>
+    <color name="smoke_pink">#C51162</color>
+    <color name="smoke_green">#1B5E20</color>
 </resources>
