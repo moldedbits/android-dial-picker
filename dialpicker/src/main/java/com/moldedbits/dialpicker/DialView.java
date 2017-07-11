@@ -21,6 +21,8 @@ import java.util.logging.Logger;
 
 import timber.log.Timber;
 
+import static java.lang.Math.PI;
+
 /**
  * Created by anilmanchanda
  * on 3/8/17.
@@ -133,6 +135,7 @@ public class DialView extends View {
                 return;
             }
             rotate(finalVelocity * deltaSecs);
+            invalidate();
             DialView.this.postDelayed(dynamicsRunnable, 1000 / 60);
             initVelocity = finalVelocity;
         }
@@ -168,7 +171,7 @@ public class DialView extends View {
             textSize = typedArray.getInt(R.styleable.DialView_textSize, 0);
             dialDirection = typedArray.getInt(R.styleable.DialView_dialDirection, 0);
             tickGapAngle = ((double) typedArray.getInt(R.styleable.DialView_tickGapAngle, 0)
-                    / (double) 180) * Math.PI;
+                    / (double) 180) * PI;
             startColor = typedArray.getColor(R.styleable.DialView_startColor, 0);
             endColor = typedArray.getColor(R.styleable.DialView_endColor, 0);
             typedArray.recycle();
@@ -195,20 +198,20 @@ public class DialView extends View {
                 break;
             //for top
             case 2:
-                currentTheta = Math.PI / 2;
-                initTheta = Math.PI / 2;
+                currentTheta = PI / 2;
+                initTheta = PI / 2;
                 angleToCompare = 90;
                 break;
             //for right
             case 3:
-                currentTheta = Math.PI;
-                initTheta = Math.PI;
+                currentTheta = PI;
+                initTheta = PI;
                 angleToCompare = 180;
                 break;
             //for bottom
             case 4:
-                currentTheta = Math.PI * 3 / 2;
-                initTheta = Math.PI * 3 / 2;
+                currentTheta = PI * 3 / 2;
+                initTheta = PI * 3 / 2;
                 angleToCompare = 270;
                 break;
 
@@ -292,12 +295,16 @@ public class DialView extends View {
 
             double newTheta = 0;
             if (angleToCompare == 0) {
+                //for left
                 newTheta = currentTheta - angle;
             } else if (angleToCompare == 90) {
+                //for top
                 newTheta = angle + currentTheta;
             } else if (angleToCompare == 180) {
+                //for right
                 newTheta = angle + currentTheta;
             } else if (angleToCompare == 270) {
+                //for bottom
                 newTheta = angle + currentTheta;
             }
 
@@ -316,7 +323,7 @@ public class DialView extends View {
 
             canvas.drawLine(startX, startY, endX, endY, paintLines);
 
-            int newThetaInDegree = (int) (newTheta / Math.PI * 180);
+            int newThetaInDegree = (int) (newTheta / PI * 180);
             NumberFormat formatter = new DecimalFormat("00");
             String value = formatter.format(i);
             switch (dialDirection) {
@@ -373,7 +380,7 @@ public class DialView extends View {
 
     private void addingTextValuesToDial(Canvas canvas, double angle,
                                         int value, float startX, float startY) {
-        double newAngle = angle / Math.PI * 180;
+        double newAngle = angle / PI * 180;
         int angleInteger = (int) newAngle;
         paintText.getTextBounds(String.valueOf(value), 0, 1, bounds);
 
@@ -395,9 +402,9 @@ public class DialView extends View {
             }
         } else if (angleToCompare == 180) {
             // for right
-            if (angleInteger >= angleToCompare - (int) (lineInterval * (tickGapAngle * 180 / Math.PI))) {
+            if (angleInteger >= angleToCompare - (int) (lineInterval * (tickGapAngle * 180 / PI))) {
                 canvas.drawText(String.valueOf(value), startX, startY + bounds.height() / 2, paintText);
-            } else if (angleInteger < 180 - (int) (lineInterval * (tickGapAngle * 180 / Math.PI))) {
+            } else if (angleInteger < 180 - (int) (lineInterval * (tickGapAngle * 180 / PI))) {
                 canvas.drawText(String.valueOf(value), startX, startY + bounds.height() * 2 / 3, paintText);
             }
         } else if (angleToCompare == 270) {
@@ -480,15 +487,19 @@ public class DialView extends View {
         double newAngle = Math.atan2(ycircle, xcircle);
 
         switch (dialDirection) {
+            //for left
             case 1:
                 delta = originalAngle - newAngle;
                 break;
+            //for top
             case 2:
                 delta = originalAngle - newAngle;
                 break;
+            //for right
             case 3:
                 delta = newAngle - originalAngle;
                 break;
+            //for bottom
             case 4:
                 delta = originalAngle - newAngle;
                 break;
@@ -513,15 +524,19 @@ public class DialView extends View {
         removeCallbacks(dynamicsRunnable);
 
         if (angleToCompare == 0) {
+            //for left
             lastTouchXCircle = event.getX() - centerX;
             lastTouchYCircle = centerY - event.getY();
         } else if (angleToCompare == 90) {
+            //for top
             lastTouchXCircle = event.getX() - centerX;
             lastTouchYCircle = centerY - event.getY();
         } else if (angleToCompare == 180) {
+            //for right
             lastTouchXCircle = centerX + event.getX();
             lastTouchYCircle = centerY - event.getY();
         } else if (angleToCompare == 270) {
+            //for bottom
             lastTouchXCircle = event.getX() - centerX;
             lastTouchYCircle = centerY - event.getY();
         }
@@ -544,18 +559,34 @@ public class DialView extends View {
 
     private void rotate(double delta) {
         currentTheta += delta;
+
         if (angleToCompare == 180 || angleToCompare == 270 || angleToCompare == 90) {
-            if ((currentTheta <= minAngleTheta + (angleToCompare * Math.PI / 180)
-                    && currentTheta >= (angleToCompare * Math.PI / 180)
+            if ((currentTheta <= minAngleTheta + (angleToCompare * PI / 180)
+                    && currentTheta >= (angleToCompare * PI / 180)
                     - (maxAngleTheta))) {
                 invalidate();
                 initTheta += delta;
                 lastTouchXCircle = xcircle;
                 lastTouchYCircle = ycircle;
             } else {
-                currentTheta = initTheta;
+                if (angleToCompare == 90) {
+                    if (currentTheta > PI / 2)
+                        currentTheta = PI / 2;
+                    else if (currentTheta < (angleToCompare * PI / 180) - maxAngleTheta)
+                        currentTheta = (angleToCompare * PI / 180) - maxAngleTheta;
+                } else if (angleToCompare == 180) {
+                    if (currentTheta > PI) {
+                        currentTheta = PI;
+                    } else if (currentTheta < (angleToCompare * PI / 180) - maxAngleTheta) {
+                        currentTheta = (angleToCompare * PI / 180) - maxAngleTheta;
+                    }
+                } else if (angleToCompare == 270) {
+                    if (currentTheta > 3 * PI / 2)
+                        currentTheta = 3 * PI / 2;
+                    else if (currentTheta < (angleToCompare * PI / 180) - maxAngleTheta)
+                        currentTheta = (angleToCompare * PI / 180) - maxAngleTheta;
+                }
             }
-
         } else if (angleToCompare == 0) {
             if (currentTheta > minAngleTheta && currentTheta < (maxAngleTheta)) {
                 invalidate();
@@ -563,10 +594,13 @@ public class DialView extends View {
                 lastTouchXCircle = xcircle;
                 lastTouchYCircle = ycircle;
             } else {
-                currentTheta = initTheta;
+                if (currentTheta < minAngleTheta) {
+                    currentTheta = minAngleTheta;
+                } else if (currentTheta > maxAngleTheta) {
+                    currentTheta = maxAngleTheta;
+                }
             }
         }
-
     }
 
     /**
@@ -619,12 +653,16 @@ public class DialView extends View {
         velocityTracker = null;
         currentTime = System.nanoTime();
         if (angleToCompare == 0) {
+            //for left
             initVelocity = -1 * velocity;
         } else if (angleToCompare == 90) {
+            //for top
             initVelocity = velocity;
         } else if (angleToCompare == 180) {
+            //for right
             initVelocity = velocity;
         } else if (angleToCompare == 270) {
+            //for bottom
             initVelocity = -1 * velocity;
         }
 
