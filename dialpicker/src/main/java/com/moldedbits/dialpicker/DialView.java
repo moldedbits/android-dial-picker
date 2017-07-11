@@ -9,7 +9,6 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.Shader;
 import android.support.annotation.NonNull;
-import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.VelocityTracker;
@@ -97,10 +96,10 @@ public class DialView extends View {
     private Paint paintLines;
     private Paint paintText;
 
-    private OnValueChangeListener onValueChangeListener;
+    private OnDialValueChangeListener onDialValueChangeListener;
 
-    public void setOnValueChangeListener(OnValueChangeListener listener) {
-        this.onValueChangeListener = listener;
+    public void setOnDialValueChangeListener(OnDialValueChangeListener listener) {
+        this.onDialValueChangeListener = listener;
     }
 
     public DialView(Context context, AttributeSet attrs) {
@@ -185,7 +184,7 @@ public class DialView extends View {
             minValue = 0;
         }
 
-        leastCount = (leastCount != 1) ? 1 : leastCount;
+//        leastCount = (leastCount != 1) ? 1 : leastCount;
 
 
         paintInnerCircle.setStyle(Paint.Style.FILL);
@@ -336,8 +335,8 @@ public class DialView extends View {
                 //for left
                 case 1:
                     if (newThetaInDegree == angleToCompare) {
-                        if (onValueChangeListener != null) {
-                            onValueChangeListener.onValueChanged(value, maxValue);
+                        if (onDialValueChangeListener != null) {
+                            onDialValueChangeListener.onDialValueChanged(value, maxValue);
                         }
                     }
                     break;
@@ -345,8 +344,8 @@ public class DialView extends View {
                 case 2:
                     if (newThetaInDegree == angleToCompare
                             || newThetaInDegree < (angleToCompare + 0.2)) {
-                        if (onValueChangeListener != null) {
-                            onValueChangeListener.onValueChanged(value, maxValue);
+                        if (onDialValueChangeListener != null) {
+                            onDialValueChangeListener.onDialValueChanged(value, maxValue);
                         }
                     }
                     break;
@@ -354,16 +353,16 @@ public class DialView extends View {
                 case 3:
                     if (newThetaInDegree == angleToCompare
                             || newThetaInDegree < (angleToCompare + 0.2)) {
-                        if (onValueChangeListener != null) {
-                            onValueChangeListener.onValueChanged(value, maxValue);
+                        if (onDialValueChangeListener != null) {
+                            onDialValueChangeListener.onDialValueChanged(value, maxValue);
                         }
                     }
                     break;
                 //for bottom
                 case 4:
                     if (newThetaInDegree == angleToCompare) {
-                        if (onValueChangeListener != null) {
-                            onValueChangeListener.onValueChanged(value, maxValue);
+                        if (onDialValueChangeListener != null) {
+                            onDialValueChangeListener.onDialValueChanged(value, maxValue);
                         }
                     }
                     break;
@@ -678,8 +677,8 @@ public class DialView extends View {
         touchState = TOUCH_STATE_RESTING;
     }
 
-    interface OnValueChangeListener {
-        void onValueChanged(String value, int maxValue);
+    public interface OnDialValueChangeListener {
+        void onDialValueChanged(String value, int maxValue);
     }
 }
 
