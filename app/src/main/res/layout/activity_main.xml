@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/rounded_rectangle_bg"
+    android:background="@android:color/white"
     tools:context="com.moldedbits.dialpickersample.MainActivity">
 
     <com.moldedbits.dialpicker.DialView
