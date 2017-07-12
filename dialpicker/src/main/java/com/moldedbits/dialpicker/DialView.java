@@ -18,8 +18,6 @@ import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.logging.Logger;
 
-import timber.log.Timber;
-
 import static java.lang.Math.PI;
 
 /**
@@ -173,9 +171,9 @@ public class DialView extends View {
                     / (double) 180) * PI;
             startColor = typedArray.getColor(R.styleable.DialView_startColor, 0);
             endColor = typedArray.getColor(R.styleable.DialView_endColor, 0);
-            paintLineColor=typedArray.getColor(R.styleable.DialView_paintLineColor,0);
-            paintTextColor=typedArray.getColor(R.styleable.DialView_paintTextColor,0);
-            paintArcColor=typedArray.getColor(R.styleable.DialView_paintArcColor,0);
+            paintLineColor = typedArray.getColor(R.styleable.DialView_paintLineColor, 0);
+            paintTextColor = typedArray.getColor(R.styleable.DialView_paintTextColor, 0);
+            paintArcColor = typedArray.getColor(R.styleable.DialView_paintArcColor, 0);
             typedArray.recycle();
         }
 
@@ -183,9 +181,6 @@ public class DialView extends View {
             maxValue = minValue;
             minValue = 0;
         }
-
-//        leastCount = (leastCount != 1) ? 1 : leastCount;
-
 
         paintInnerCircle.setStyle(Paint.Style.FILL);
         paintInnerCircle.setFilterBitmap(true);
@@ -237,7 +232,6 @@ public class DialView extends View {
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        Timber.d("tick gap angle is %f", tickGapAngle);
         tickCount = ((maxValue - minValue) / leastCount) + 1;
         maxAngleTheta = (((tickCount - 1) * tickGapAngle));
         minAngleTheta = 0;
