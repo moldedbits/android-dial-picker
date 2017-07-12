@@ -1,7 +1,3 @@
 <resources>
     <string name="app_name">Dial View</string>
-    <string name="enter_details">Enter Details</string>
-    <string name="set_reminder">Set Reminder</string>
-    <string name="roboto_regular">10dp</string>
-    <string name="alarm">alarm</string>
 </resources>
