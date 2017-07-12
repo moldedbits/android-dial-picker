@@ -7,6 +7,8 @@ Android Dial Picker, a circular custom view that works just like a rotating dial
 user like the direction(left,top,right,bottom), max/min ranges, interval values and colours. These custom attributes can be added and styled via XML as well as programatically.  
 As the dial rotates, the current value gets updated and is displayed on the screen.  
 
+![Alt Text](https://github.com/moldedbits/android-dial-picker/blob/master/gif/dial.gif)
+
 ## Usage
 * In XML layout:
 ```
