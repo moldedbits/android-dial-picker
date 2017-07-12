@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
         dialViewLeft.setOnDialValueChangeListener(new DialView.OnDialValueChangeListener() {
             @Override
             public void onDialValueChanged(String value, int maxValue) {
-                textViewLeft.setText(value);
+                textViewLeft.setText(value+ "  : ");
             }
         });
         dialViewTop.setOnDialValueChangeListener(new DialView.OnDialValueChangeListener() {

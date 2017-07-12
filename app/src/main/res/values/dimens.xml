@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="margin_large">32dp</dimen>
+    <dimen name="margin_large">40dp</dimen>
     <dimen name="padding_default">16dp</dimen>
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
@@ -9,5 +9,6 @@
     <dimen name="text_small">14dp</dimen>
     <dimen name="margin_small">8dp</dimen>
     <dimen name="margin_normal">10dp</dimen>
-    <dimen name="text_larger">20dp</dimen>
+    <dimen name="text_larger">25sp</dimen>
+    <dimen name="text_medium">20sp</dimen>
 </resources>

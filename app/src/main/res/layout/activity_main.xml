@@ -35,7 +35,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:layout_marginStart="@dimen/margin_small"
+        android:textSize="@dimen/text_larger"
+        android:layout_marginStart="@dimen/margin_large"
         android:layout_toEndOf="@+id/dial_left" />
 
     <com.moldedbits.dialpicker.DialView
@@ -65,6 +66,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/dial_top"
         android:layout_centerInParent="true"
+        android:textSize="@dimen/text_medium"
         android:layout_marginTop="@dimen/margin_default"
         android:rotation="90" />
 
@@ -96,7 +98,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:layout_marginEnd="@dimen/margin_small"
+        android:textSize="@dimen/text_larger"
+        android:layout_marginEnd="@dimen/margin_large"
         android:layout_toStartOf="@+id/dial_right" />
 
     <com.moldedbits.dialpicker.DialView
@@ -127,8 +130,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/dial_bottom"
+        android:textSize="@dimen/text_medium"
         android:layout_centerInParent="true"
-        android:layout_marginBottom="@dimen/margin_small"
+        android:layout_marginBottom="@dimen/margin_default"
         android:rotation="90" />
 
 </RelativeLayout>
