@@ -60,5 +60,32 @@ As the dial rotates, the current value gets updated and is displayed on the scre
         <attr name="paintArcColor" format="color"/>
     </declare-styleable>
 ```
+* Dial Value Change Listener
+```
+dialViewLeft.setOnDialValueChangeListener(new DialView.OnDialValueChangeListener() {
+            @Override
+            public void onDialValueChanged(String value, int maxValue) {
+                textViewLeft.setText(value+ "  : ");
+            }
+        });
+        dialViewTop.setOnDialValueChangeListener(new DialView.OnDialValueChangeListener() {
+            @Override
+            public void onDialValueChanged(String value, int maxValue) {
+                textViewTop.setText(value);
+            }
+        });
+        dialViewRight.setOnDialValueChangeListener(new DialView.OnDialValueChangeListener() {
+            @Override
+            public void onDialValueChanged(String value, int maxValue) {
+                textViewRight.setText(value);
+            }
+        });
+        dialViewBottom.setOnDialValueChangeListener(new DialView.OnDialValueChangeListener() {
+            @Override
+            public void onDialValueChanged(String value, int maxValue) {
+                textViewBottom.setText(value);
+            }
+        });
+```        
 Please feel to contribute or report issues.
 
