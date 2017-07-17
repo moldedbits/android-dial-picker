@@ -8,7 +8,7 @@ via xml or code. You can set direction(left,top,right,bottom), max/min ranges, i
 These custom attributes can be added and styled via XML as well as programatically.  
 As the dial rotates, the current value gets updated and is displayed on the screen.  
 
-<img src="/gif/dial.gif" alt="Android Dial Number Picker" style="width: 200px; height: 400px"/>
+<img src="/gif/dial.gif" alt="Android Dial Number Picker" width= "250px"/>
 
 ## Usage
 * In XML layout:
