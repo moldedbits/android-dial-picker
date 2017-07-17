@@ -1,6 +1,19 @@
 # android-dial-picker
 A custom circular rotating dial like picker for android.  
 
+## Gradle 
+    compile 'com.moldedbits.dialpicker:android-dial-picker:1.0'
+
+## Maven
+```xml
+<dependency>
+  <groupId>com.moldedbits.dialpicker</groupId>
+  <artifactId>android-dial-picker</artifactId>
+  <version>1.0</version>
+  <type>pom</type>
+</dependency>
+```
+
 ## Implementation
 
 Android Dial Picker, a circular custom view that works just like a rotating dial. DialView is highly customizable
