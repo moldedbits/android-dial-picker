@@ -3,15 +3,17 @@ A custom circular rotating dial like picker for android.
 
 ## Implementation
 
-Android Dial Picker, a circular custom view that works just like a rotating dial. The dial can be customized according to the needs of the 
-user like the direction(left,top,right,bottom), max/min ranges, interval values and colours. These custom attributes can be added and styled via XML as well as programatically.  
+Android Dial Picker, a circular custom view that works just like a rotating dial. DialView is highly customizable
+via xml or code. You can set direction(left,top,right,bottom), max/min ranges, interval values and colours. 
+These custom attributes can be added and styled via XML as well as programatically.  
 As the dial rotates, the current value gets updated and is displayed on the screen.  
 
-![Alt Text](https://github.com/moldedbits/android-dial-picker/blob/master/gif/dial.gif)
+<img src="https://github.com/moldedbits/android-dial-picker/blob/master/gif/dial.gif" 
+alt="Android Dial Number Picker" style="width: 200px;"/>
 
 ## Usage
 * In XML layout:
-```
+```xml
 <com.moldedbits.dialpicker.DialView
         android:id="@+id/dial_left"
         android:layout_width="90dp"
@@ -36,7 +38,7 @@ As the dial rotates, the current value gets updated and is displayed on the scre
         custom:tickGapAngle="12" />
 ```
 * All customizable attributes: In attrs.xml 
-```
+```xml
 <declare-styleable name="DialView">
         <attr name="lineInterval" format="integer" />
         <attr name="maxValue" format="integer" />
@@ -61,31 +63,13 @@ As the dial rotates, the current value gets updated and is displayed on the scre
     </declare-styleable>
 ```
 * Dial Value Change Listener
-```
-dialViewLeft.setOnDialValueChangeListener(new DialView.OnDialValueChangeListener() {
+```java
+    dialViewLeft.setOnDialValueChangeListener(new DialView.OnDialValueChangeListener() {
             @Override
             public void onDialValueChanged(String value, int maxValue) {
                 textViewLeft.setText(value+ "  : ");
             }
         });
-        dialViewTop.setOnDialValueChangeListener(new DialView.OnDialValueChangeListener() {
-            @Override
-            public void onDialValueChanged(String value, int maxValue) {
-                textViewTop.setText(value);
-            }
-        });
-        dialViewRight.setOnDialValueChangeListener(new DialView.OnDialValueChangeListener() {
-            @Override
-            public void onDialValueChanged(String value, int maxValue) {
-                textViewRight.setText(value);
-            }
-        });
-        dialViewBottom.setOnDialValueChangeListener(new DialView.OnDialValueChangeListener() {
-            @Override
-            public void onDialValueChanged(String value, int maxValue) {
-                textViewBottom.setText(value);
-            }
-        });
 ```        
-Please feel to contribute or report issues.
+Please feel free to contribute by pull request, issues or feature requests.
 

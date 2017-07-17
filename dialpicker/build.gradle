@@ -1,3 +1,14 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+
+    dependencies {
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7.3'
+        classpath 'com.github.dcendents:android-maven-gradle-plugin:1.5'
+    }
+}
+
 apply plugin: 'com.android.library'
 
 android {
@@ -24,3 +35,30 @@ android {
 dependencies {
     compile 'com.android.support:support-annotations:25.3.1'
 }
+
+ext {
+    bintrayRepo = 'maven'
+    bintrayName = 'android-dial-picker'
+
+    publishedGroupId = 'com.moldedbits.dialpicker'
+    libraryName = 'android-dial-picker'
+    artifact = 'android-dial-picker'
+
+    libraryDescription = 'A circular rotating dial like number picker view for android.'
+
+    siteUrl = 'https://github.com/moldedbits/android-dial-picker'
+    gitUrl = 'https://github.com/moldedbits/android-dial-picker.git'
+
+    libraryVersion = '1.0'
+
+    developerId = 'moldedbits'
+    developerName = 'Moldedbits'
+    developerEmail = 'hello@moldedbits.com'
+
+    licenseName = 'Apache 2.0'
+    licenseUrl = 'https://opensource.org/licenses/Apache-2.0'
+    allLicenses = ["Apache-2.0"]
+}
+
+apply from: 'install.gradle'
+apply from: 'bintray.gradle'
